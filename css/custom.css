@@ -1,0 +1,17 @@
+/* 全局背景图 */
+#body-wrap {
+  background: url(/img/top_img.jpg) no-repeat center center fixed !important;
+  background-size: cover !important;
+}
+/* 内容卡片半透明 */
+#page-header, #main-inner, #aside-content .card-widget {
+  background: rgba(255,255,255,0.9) !important;
+}
+/* 深色模式适配 */
+[data-theme="dark"] #page-header, [data-theme="dark"] #main-inner, [data-theme="dark"] #aside-content .card-widget {
+  background: rgba(18,18,18,0.9) !important;
+}
+/* 页脚链接悬停颜色 */
+#footer a:hover {
+  color: #001dffcf !important;
+}
