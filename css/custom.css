@@ -19,3 +19,11 @@
 #aside-content .card-info #card-info-btn:hover {
   background-color: var(--btn-bg) !important;
 }
+
+/* 禁用侧边栏头像及图标hover旋转 */
+.avatar-img img:hover {
+  transform: unset !important;
+}
+#aside-content .card-info .card-info-social-icons i:hover {
+  transform: unset !important;
+}

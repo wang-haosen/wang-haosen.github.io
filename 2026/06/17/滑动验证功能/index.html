@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>滑动验证功能 | 桐意妙妙屋</title><meta name="author" content="桐意"><meta name="copyright" content="桐意"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="最近公司更新了新的验证组件，之前是文字点选验证，现在要全面替换为滑动验证。滑动验证主要是为了检验是否人为操作，避免通过工具批量调用一些接口，例如获取手机验证码、预约等场景 公司提供的组件是js原生方法，里面包含了 js、css及图标icon相关资源，公司项目是vue项目，首先在入口页面引入相关资源，资源放置到public目录下。 12&lt;script src&#x3D;&quot;.&#x2F;captcha&#x2F;j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="滑动验证功能">
+<meta property="og:url" content="https://wang-haosen.gitee.io/2026/06/17/%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="桐意妙妙屋">
+<meta property="og:description" content="最近公司更新了新的验证组件，之前是文字点选验证，现在要全面替换为滑动验证。滑动验证主要是为了检验是否人为操作，避免通过工具批量调用一些接口，例如获取手机验证码、预约等场景 公司提供的组件是js原生方法，里面包含了 js、css及图标icon相关资源，公司项目是vue项目，首先在入口页面引入相关资源，资源放置到public目录下。 12&lt;script src&#x3D;&quot;.&#x2F;captcha&#x2F;j">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wang-haosen.gitee.io/img/avatar-img.jpg">
+<meta property="article:published_time" content="2026-06-17T08:42:18.000Z">
+<meta property="article:modified_time" content="2026-06-18T07:35:10.413Z">
+<meta property="article:author" content="桐意">
+<meta property="article:tag" content="滑动验证">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wang-haosen.gitee.io/img/avatar-img.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "滑动验证功能",
+  "url": "https://wang-haosen.gitee.io/2026/06/17/%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD/",
+  "image": "https://wang-haosen.gitee.io/img/avatar-img.jpg",
+  "datePublished": "2026-06-17T08:42:18.000Z",
+  "dateModified": "2026-06-18T07:35:10.413Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "桐意",
+      "url": "https://wang-haosen.gitee.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://wang-haosen.gitee.io/2026/06/17/%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '滑动验证功能',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="icon" type="image/png" sizes="32x32" href="/img/blog.png"><link rel="apple-touch-icon" href="/img/blog.png"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar-img.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">桐意妙妙屋</span></a><a class="nav-page-title" href="/"><span class="site-name">滑动验证功能</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">滑动验证功能</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-17T08:42:18.000Z" title="发表于 2026-06-17 16:42:18">2026-06-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-18T07:35:10.413Z" title="更新于 2026-06-18 15:35:10">2026-06-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8A%9F%E8%83%BD/">功能</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><p>最近公司更新了新的验证组件，之前是文字点选验证，现在要全面替换为滑动验证。滑动验证主要是为了检验是否人为操作，避免通过工具批量调用一些接口，例如获取手机验证码、预约等场景</p>
+<p>公司提供的组件是js原生方法，里面包含了 js、css及图标icon相关资源，公司项目是vue项目，首先在入口页面引入相关资源，资源放置到public目录下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./captcha/js/sliceCaptcha.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./captcha/css/sliceCaptcha.css&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：在另外一个项目中，引入通过控制台发现获取不到相关资源，经过排查发现，打包配置中有个配置项需要修改</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// assetsPublicPath 决定资源引用前缀‌：打包生成的 index.html 中，由构建工具自动插入的 &lt;script&gt;、&lt;link&gt; 标签的 src 或 href 属性，会以此配置值作为前缀。</span></span><br><span class="line"><span class="comment">// 例如设为 &#x27;./&#x27;，则资源路径变为 ./static/js/app.js；设为 &#x27;/&#x27; 则为 /static/js/app.js。</span></span><br><span class="line"><span class="comment">// assetsPublicPath: &#x27;/social/fee/card&#x27; 原有配置</span></span><br><span class="line"><span class="attr">assetsPublicPath</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span> ? <span class="string">&#x27;/social/fee/card&#x27;</span> : <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>整个验证码交互流程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;!-- 滑动验证码挂载dom --&gt;</span><br><span class="line">  &lt;div v-if=&quot;sliceCaptchaDialog&quot; class=&quot;captcha-overlay&quot; style=&quot;z-index: 2003;&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div v-if=&quot;sliceCaptchaDialog&quot; class=&quot;captcha-dialog&quot; style=&quot;width: 370px;z-index: 2004;&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;sliceCaptcha&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      clientId: null, // 秘钥</span><br><span class="line">      sessionId: null, // 秘钥绑定sessionId，接口传递sessionId，通过其查找对应clientId，进行加密解密</span><br><span class="line">      sliceCaptchaDialog: false,</span><br><span class="line">      sliceCaptcha: null</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      // 步骤一：获取秘钥，用于图片及滑动轨迹数据加密 </span><br><span class="line">      getClientId() &#123;</span><br><span class="line">        this.axios.post(&#x27;接口地址&#x27;, &#x27;入参&#x27;, &#123;</span><br><span class="line">          headers: &#123;</span><br><span class="line">            &#x27;Content-Type&#x27;: &#x27;application/json;charset=utf-8&#x27;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;).then(res =&gt; &#123;</span><br><span class="line">          if (res.code === &#x27;200&#x27;) &#123;</span><br><span class="line">            this.clientId = res.data.clientId;</span><br><span class="line">            this.sessionId = res.data.sessionId;</span><br><span class="line">            this.sliceCaptcha &amp;&amp; this.sliceCaptcha = null;</span><br><span class="line">            this.sliceCaptchaDialog = true;</span><br><span class="line">            this.$nextTick(() =&gt; &#123;</span><br><span class="line">              this.createSliceCaptcha(&#x27;sliceCaptcha&#x27;);</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      createSliceCaptcha(divId) &#123;</span><br><span class="line">        this.sliceCaptcha = new SliceCaptcha(divId, &#123;</span><br><span class="line">          // 相关配置项，包括背景宽高、秘钥等信息</span><br><span class="line">          clientId: this.clientId,</span><br><span class="line">          // 初始化实例会自动调用，获取背景图及滑块图片</span><br><span class="line">          requestData: (param, successCallback, errorCallback, capchaObject) =&gt; &#123;</span><br><span class="line">            let requestData = JSON.stringify(&#123;</span><br><span class="line">              cpatchaType: &#x27;slice_data&#x27;,</span><br><span class="line">              ...param, // 背景图宽高及滑块宽高</span><br><span class="line">              sessionId: this.sessionId</span><br><span class="line">            &#125;)</span><br><span class="line">            this.axios.post(&#x27;接口地址&#x27;, requestData, &#123;</span><br><span class="line">              headers: &#123;</span><br><span class="line">                &#x27;Content-Type&#x27;: &#x27;application/json;charset=utf-8&#x27;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;).then(res =&gt; &#123;</span><br><span class="line">              if (res.code === &#x27;200&#x27;) &#123;</span><br><span class="line">                successCallback(res.data) // 会进行解密base64，展示滑动验证组件</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;,</span><br><span class="line">          sendData: (resData) =&gt; &#123;</span><br><span class="line">            const requestData = JSON.stringify(&#123;</span><br><span class="line">              captchaType: &#x27;slice_check&#x27;,</span><br><span class="line">              data: resData,</span><br><span class="line">              sessionId: this.sessionId</span><br><span class="line">            &#125;)</span><br><span class="line">            this.axios.post(&#x27;接口地址&#x27;, requestData， &#123;</span><br><span class="line">              headers: &#123;</span><br><span class="line">                &#x27;Content-Type&#x27;: &#x27;application/json;charset=utf-8&#x27;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;).then(res =&gt; &#123;</span><br><span class="line">              if (res.data === &quot;success&quot;) &#123;</span><br><span class="line">                this.sliceCaptchaDialog = false; // 验证成功</span><br><span class="line">              &#125; else &#123;</span><br><span class="line">                this.getClientId()</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://wang-haosen.gitee.io">桐意</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://wang-haosen.gitee.io/2026/06/17/%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD/">https://wang-haosen.gitee.io/2026/06/17/%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://wang-haosen.gitee.io" target="_blank">桐意妙妙屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81/">滑动验证</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar-img.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/04/14/qrcode%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%B9%B6%E5%90%88%E6%88%90%E6%B5%B7%E6%8A%A5/" title="qrcode生成二维码并合成海报"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">qrcode生成二维码并合成海报</div></div><div class="info-2"><div class="info-item-1">功能：根据分享码和项目名，生成二维码并合成到海报模版中。 方案：使用插件qrcode 生成二维码，使用插件canvas-to-image 合成海报。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950async getQRCode(url) &#123;  try &#123;    let opts = &#123;      errorCorrectionLevel: &#x27;L&#x27;, // 容错级别      type: &#x27;image/png&#x27;, // 二维码类型      margin: 0,      width: 480, // 二维码宽度      height: 480, // 二维码高度      color: &#123;        dark: &#x27;#333&#x27;, // 前景色        light: &#x27;#fff&#x27; // 背景色      &#125;  ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar-img.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">桐意</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/wang-haosen" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://gitee.com/w-haosen" target="_blank" title="Gitee"><i class="fas fa-code" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:whaosen1105@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/17/%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD/" title="滑动验证功能">滑动验证功能</a><time datetime="2026-06-17T08:42:18.000Z" title="发表于 2026-06-17 16:42:18">2026-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/14/qrcode%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%B9%B6%E5%90%88%E6%88%90%E6%B5%B7%E6%8A%A5/" title="qrcode生成二维码并合成海报">qrcode生成二维码并合成海报</a><time datetime="2026-04-14T07:23:25.000Z" title="发表于 2026-04-14 15:23:25">2026-04-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/14/h5%E9%A1%B5%E9%9D%A2%E6%89%93%E5%BC%80%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88%E5%BC%80%E6%94%BE%E6%A0%87%E7%AD%BE%E6%96%B9%E6%A1%88%EF%BC%89/" title="h5页面打开微信小程序（开放标签方案）">h5页面打开微信小程序（开放标签方案）</a><time datetime="2026-04-14T02:40:21.000Z" title="发表于 2026-04-14 10:40:21">2026-04-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 桐意</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5-b1"></script><script src="/js/main.js?v=5.5.5-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章..." type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.5-b1"></script></div></div></body></html>
