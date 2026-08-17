@@ -4,7 +4,7 @@
   background-size: cover !important;
 }
 /* 内容卡片半透明 */
-#page-header, #main-inner, #aside-content .card-widget {
+#main-inner, #aside-content .card-widget {
   background: rgba(255,255,255,0.9) !important;
 }
 /* 深色模式适配 */
@@ -26,4 +26,10 @@
 }
 #aside-content .card-info .card-info-social-icons i:hover {
   transform: unset !important;
+}
+#page-header {
+  background: rgba(255,255,255,0) !important;
+}
+#page-header.not-top-img #nav {
+  background: rgba(255,255,255,0.9) !important;
 }
